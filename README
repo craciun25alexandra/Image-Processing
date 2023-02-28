@@ -1,0 +1,48 @@
+=Task1=
+
+Functia openfile e destinata citirii unei imagini in memorie. Are tipul
+PartsImage, deoarece aveam nevoie de datele ei in anumite variabile.
+Aceasta citeste fileheaderul, infoheaderul, muta cursorul la inceputul
+pixelilor si apeleaza functia readimage, ce aloca memorie matricei de
+pixeli,(formula pentru pixeli este luata de pe pagina de wiki atasata
+in enunt, si este pentru padding). De precizat este faptul ca matricea
+se citeste de la height-1, coltul (0,0) fiind stanga sus, nu stanga 
+jos. Un element din matrice are forma RGB, care este o structura cu
+3 campuri, pentru cele 3 culori: rosu, verde, albastru.
+Pentru a salva imaginea, se foloseste subprogramul create, care deschide
+un fisier wb, scrie atat fileheaderul, infoheaderul, cat si matricea de
+pixeli cu aceleasi dimensiuni si inchide fisierul.
+programul ruleaza cat timp ok=1, variabila ce se schimba cand inputul este
+quit, iar apoi se elibereaza memorie.
+
+ =Task2=
+
+Pentru a insera pozele, se pastreaza dimensiunile celor 2 poze si coordonatele
+de la care se face insertia. Apoi, parcurgandu-se in limitele pozei, pixelii
+matricei initiale sunt inlocuiti cu pixelii pozei date si se elibereaza memoria
+pentru poza 2.
+
+ =Task3=
+
+ Subprogramul matrixPic creeaza matricea pixelilor necesari pentru dimensiunea
+ si desenarea liniei de grosime xw. Aceasta primeste culorile care sunt stocate
+ in pallet, structura rbg. Functia draw determina diferenta maxima, iar in
+ functie de aceasta se calculeaza si cealalta coordonata, cu formula data.
+ Apoi, de la dimensiunea ceruta -xw/2 (pentru grosimea liniei), daca
+ coordonatele sunt in limitele pozei, pixelii matricei initiali iau valoarea
+ pixelilor din matrixpic. Pentru a desena forme, se apeleaza functia de mai
+ multe ori.
+
+ =Task4 + 5=
+
+ Deoarece se reapela de multe ori, astfel incat stiva ceda, in functia fill
+ se dau elementele ca pointeri, mai putin coordonatele de plecare x si y.
+ Dimensiunile pozei( necesare pentru a nu depasi poza, ce ar fi dus la seg
+ fault, accesarea unei zone de memorie inexistente), sunt stocate intr- o
+ structura, iar functia se apeleaza cu pointerul sau, caci stiva n- ar mai fi
+ suportat alti 2 parametri. In fill, pixelul corespunzator isi schimba
+ culoarea, luand informatiile din pallet, iar apoi vecinii sai sunt comparati
+ (daca acestia se afla in dimensiunile pozei) cu variabila cobai, o variabila
+ rbg menita sa retina culoarea initiala a pixelui dat. In cazul in care au
+ aceeasi culoare, se reapeleaza functia cu coordonatele vecinului, iar
+ procedeul se repeta.
